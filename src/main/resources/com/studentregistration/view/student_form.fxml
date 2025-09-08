@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.ToggleGroup?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.studentregistration.controller.StudentController">
+
+    <!-- Define reusable objects -->
+    <fx:define>
+        <ToggleGroup fx:id="genderGroup"/>
+    </fx:define>
+
+    <!-- Header -->
+    <top>
+        <Label text="Student Registration" BorderPane.alignment="CENTER"
+               styleClass="header-label"/>
+    </top>
+
+    <!-- Form -->
+    <center>
+        <GridPane hgap="10" vgap="10" BorderPane.alignment="CENTER">
+            <padding><Insets top="20" right="20" bottom="10" left="20"/></padding>
+
+            <columnConstraints>
+                <ColumnConstraints percentWidth="30"/>
+                <ColumnConstraints percentWidth="70"/>
+            </columnConstraints>
+
+            <children>
+                <Label text="Reg No:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                <TextField fx:id="regNoField" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                <Label text="Name:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                <TextField fx:id="nameField" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+                <Label text="Email:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                <TextField fx:id="emailField" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+                <Label text="Course:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                <ComboBox fx:id="courseBox" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+                <Label text="Date of Birth:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+                <DatePicker fx:id="dobPicker" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+
+                <Label text="Gender:" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+                <HBox spacing="12" GridPane.rowIndex="5" GridPane.columnIndex="1">
+                    <children>
+                        <RadioButton fx:id="maleRadio" text="Male" toggleGroup="$genderGroup"/>
+                        <RadioButton fx:id="femaleRadio" text="Female" toggleGroup="$genderGroup"/>
+                    </children>
+                </HBox>
+
+                <HBox spacing="12" GridPane.rowIndex="6" GridPane.columnIndex="1">
+                    <children>
+                        <Button text="Save" onAction="#handleSave"/>
+                        <Button text="Clear" onAction="#handleClear"/>
+                        <Button text="Delete Selected" onAction="#handleDeleteSelected"/>
+                    </children>
+                </HBox>
+            </children>
+        </GridPane>
+    </center>
+
+    <!-- Table -->
+    <bottom>
+        <TableView fx:id="studentTable" prefHeight="230">
+            <columns>
+                <TableColumn fx:id="regNoColumn"  text="Reg No"  prefWidth="100"/>
+                <TableColumn fx:id="nameColumn"   text="Name"    prefWidth="160"/>
+                <TableColumn fx:id="emailColumn"  text="Email"   prefWidth="220"/>
+                <TableColumn fx:id="courseColumn" text="Course"  prefWidth="120"/>
+                <TableColumn fx:id="dobColumn"    text="DOB"     prefWidth="110"/>
+                <TableColumn fx:id="genderColumn" text="Gender"  prefWidth="90"/>
+            </columns>
+        </TableView>
+    </bottom>
+</BorderPane>
